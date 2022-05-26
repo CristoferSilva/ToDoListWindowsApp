@@ -1,0 +1,62 @@
+﻿<Page
+    x:Class="ToDoListUWP.Views.PresentationOfAllTasksView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ToDoListUWP.Views"
+    xmlns:converters="using:Commons.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Width="630" Height="410">
+  
+    <Page.Resources>
+        <converters:DateConverter x:Key="DateConverter"/>
+    </Page.Resources>
+
+    <Grid>
+
+      
+
+        <ListView ItemsSource="{x:Bind ViewModel.AllTasks}" Width="630" Height="410" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" SelectedItem="{x:Bind ViewModel.SelectedTask, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <Grid x:Name="TaskApresentation" HorizontalAlignment="Center" VerticalAlignment="Center" Width="600" Height="50" CornerRadius="5" Background="#eec559" Margin="0,10,0,10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle Fill="#eedec5" Grid.Column="0" Grid.RowSpan="2" Width="25" Height="50" />
+
+
+                        <CheckBox  x:Name="CheckBoxTask" IsChecked="{Binding IsChecked, Mode=TwoWay}"  Grid.Column="0" Grid.RowSpan="2" Height="20" Width="10" Margin="2,0,0,0"/>
+
+                        <TextBlock Margin="20,0,0,0" x:Name="TaskTitle" Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Center"  Width="Auto" Foreground="Black">
+                                <Run Text="Title: " FontSize="20"/>
+                                <Run Text="{Binding Title}" FontSize="15"/>
+                        </TextBlock>
+
+                        <TextBlock x:Name="TaskStartDate" Margin="120,0,0,0" Grid.Row="0" Grid.Column="2"  Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Black">
+                                <Run Text="Start Date: " FontSize="15"/>
+                                <Run Text="{Binding StartDate, Converter={StaticResource DateConverter}}" FontSize="10"/>
+                        </TextBlock>
+
+                        <TextBlock x:Name="TaskEndDate" Margin="120,0,0,0" Grid.Row="1" Grid.Column="2"  Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Black">
+                                <Run Text="End Date:  " FontSize="15"/>
+                                <Run Text="{Binding EndDate, Converter={StaticResource DateConverter}}" FontSize="10"/>
+                        </TextBlock>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ItemsPanelTemplate>
+                <StackPanel Orientation="Horizontal"/>
+            </ItemsPanelTemplate>
+        </ListView>
+    </Grid>
+</Page>
