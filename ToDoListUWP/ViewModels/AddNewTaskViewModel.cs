@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using ToDoListUWP.Model;
 using ToDoListUWP.Model.Commands;
-using ToDoListUWP.Services;
 using ToDoListUWP.ViewModels.Services;
 using ToDoListUWP.Views;
 using Windows.ApplicationModel.Core;
@@ -115,7 +114,7 @@ namespace ToDoListUWP.ViewModels
             {
                 await _respositoryService.AddNewTaskInDataBase(NewTask);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 await messagesPopUpService.showNotSuccessfulMessage();
                 return;
@@ -131,10 +130,9 @@ namespace ToDoListUWP.ViewModels
         {
             try
             {
-                var lastTask = await _respositoryService.GetLastTaskInDataBase();
-                NewTask.Id = lastTask.Id + 1;
+                NewTask.Id = _respositoryService.GetLastTaskIDInDataBase().Result + 1;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 NewTask.Id = 1;
             }

@@ -1,21 +1,19 @@
 ﻿using Commons.Entities;
-using Commons.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WPFToDoList.Model.Database;
 
-namespace WPFToDoList.ViewModels.Services
+namespace Commons.Services
 {
     public class RepositoryService : ITaskRespositoryService
     {
 
         public async Task AddNewTaskInDataBase(TaskEntity newTask)
         {
-            using (var database = new TaskDatabase())
+            using (var database = new ToDoListDB())
             {
                 database.Tasks.Add(newTask);
                 await database.SaveChangesAsync();
@@ -23,7 +21,7 @@ namespace WPFToDoList.ViewModels.Services
         }
         public async Task<List<TaskEntity>> GetAllTasks()
         {
-            using (var database = new TaskDatabase())
+            using (var database = new ToDoListDB())
             {
                 var allTasks = await database.Tasks.ToListAsync();
                 RemoveCheckedTasks(allTasks);
@@ -34,7 +32,7 @@ namespace WPFToDoList.ViewModels.Services
 
         public async Task<bool> RemoveTaskAsync(TaskEntity newTask)
         {
-            using (var database = new TaskDatabase())
+            using (var database = new ToDoListDB())
             {
                 try
                 {
@@ -57,7 +55,7 @@ namespace WPFToDoList.ViewModels.Services
 
         public async Task<List<TaskEntity>> GetAllTasksOfTheDay()
         {
-            using (var database = new TaskDatabase())
+            using (var database = new ToDoListDB())
             {
 
                 var allTasks = await database.Tasks.ToListAsync();
@@ -98,6 +96,25 @@ namespace WPFToDoList.ViewModels.Services
             foreach (TaskEntity currentTask in taskEntities)
             {
                 currentTask.RespositoryService = this;
+            }
+        }
+
+        public async Task<TaskEntity> GetTask(int id)
+        {
+            using (var database = new ToDoListDB())
+            {
+                TaskEntity wantedTask = await database.Tasks.FindAsync(id);
+
+                return wantedTask;
+            }
+        }
+
+        public async Task<int> GetLastTaskIDInDataBase()
+        {
+            using (var database = new ToDoListDB())
+            {
+                List<TaskEntity> list = await database.Tasks.ToListAsync();
+                return list.Last().Id;
             }
         }
     }

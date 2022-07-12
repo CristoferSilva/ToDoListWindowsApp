@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToDoListUWP.Model;
-using ToDoListUWP.Services;
 using ToDoListUWP.ViewModels.Services;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
@@ -19,7 +18,6 @@ namespace ToDoListUWP.ViewModels
 {
     public class PresentationOfAllTasksViewModel : DependencyObject
     {
-
 
         private TaskEntity _selectedTask;
         public AppShell CurrentAppShell { get; set; }
@@ -54,16 +52,7 @@ namespace ToDoListUWP.ViewModels
 
         private async void InitAllTaskList()
         {
-            var tasks = await _respositoryService.GetAllTasks();
-
-            foreach (TaskEntity currentTask in tasks)
-            {
-                if (currentTask.IsChecked == false)
-                {
-                    AllTasks.Add(currentTask);
-                }
-
-            }
+            AllTasks = await _respositoryService.GetAllTasks();
         }
 
         public async void ListView_SelectionChanged()

@@ -127,7 +127,6 @@
     <Compile Include="ViewModels\AddNewTaskViewModel.cs" />
     <Compile Include="ViewModels\PresentationOfAllTasksViewModel.cs" />
     <Compile Include="ViewModels\Services\MessagePopUpService.cs" />
-    <Compile Include="ViewModels\Services\RepositoryService.cs" />
     <Compile Include="ViewModels\Services\ShowTaskInformationService.cs" />
     <Compile Include="Views\AddNewTaskPage.xaml.cs">
       <DependentUpon>AddNewTaskPage.xaml</DependentUpon>
