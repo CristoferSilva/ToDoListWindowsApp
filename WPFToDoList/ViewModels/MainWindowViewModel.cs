@@ -21,12 +21,12 @@ namespace WPFToDoList.ViewModels
         public List<TaskEntity> TaskList
         {
             get { return _taskList; }
-            set { _taskList = value; NotifyPropertyChanged(); }
+            set { _taskList = value; NotifyPropertyChanged("TaskList"); }
         }
 
-        private void NotifyPropertyChanged()
+        private void NotifyPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TaskList"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private TaskEntity selectedTask;
