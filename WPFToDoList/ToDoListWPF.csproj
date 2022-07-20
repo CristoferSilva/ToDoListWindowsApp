@@ -235,7 +235,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Commons\Commons.csproj">
       <Project>{00277A64-7272-4822-ABD7-849B4AA98A03}</Project>
@@ -244,6 +243,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\Img\BackgroundMain.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Img\AppImageIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.2\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.2\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" />

@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFToDoList"
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="1560" Background="Gray">
+        Title="MainWindow"
+        Height="900" 
+        Width="1560"
+        Background="Gray"
+        Icon="/Views/Img/AppImageIcon.png"
+        >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>
