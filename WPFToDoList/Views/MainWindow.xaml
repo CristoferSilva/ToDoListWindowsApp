@@ -19,21 +19,55 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.Background>
-            <ImageBrush ImageSource="Img/BackgroundMain.jpg" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="Img/BackgroundMain.jpg" 
+                        Stretch="UniformToFill"/>
         </Grid.Background>
 
-        <TextBlock Grid.Row="0" Height="90" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource TitleTextColor}" FontFamily="Microsoft Sans Serif">
-            <Run Text="To Do List" FontSize="50"/>
-            <Run Text=" for desktop" FontSize="10" Foreground="{DynamicResource SubTitleTextColor}"/>
+        <TextBlock Grid.Row="0" 
+                   Height="90"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="{DynamicResource TitleTextColor}"
+                   FontFamily="Microsoft Sans Serif">
+            <Run Text="To Do List" 
+                 FontSize="50"/>
+            <Run Text=" for desktop" 
+                 FontSize="10" 
+                 Foreground="{DynamicResource SubTitleTextColor}"/>
         </TextBlock>
 
-        <TextBlock Grid.Row="1"   Text="Tasks of the day:" FontSize="20" Margin="455,0,0,0"  HorizontalAlignment="Left"  Foreground="{DynamicResource SubTitleTextColor}" FontFamily="Microsoft Sans Serif" Width="150"/>
+        <TextBlock Grid.Row="1"  
+                   Text="Tasks of the day:"
+                   FontSize="20" 
+                   Margin="455,0,0,0" 
+                   HorizontalAlignment="Left" 
+                   Foreground="{DynamicResource SubTitleTextColor}" 
+                   FontFamily="Microsoft Sans Serif" Width="150"/>
 
-        <ListView  Grid.Row="2"  VerticalAlignment="Center" HorizontalAlignment="Center" ItemsSource="{Binding TaskList, Mode=TwoWay}" Width="630" Height="380" Background="Transparent" BorderBrush="Transparent" BorderThickness="0"  SelectedItem="{Binding SelectedTask, Mode=TwoWay}">
+        <ListView  Grid.Row="2" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Center" 
+                   ItemsSource="{Binding TaskList, Mode=TwoWay}"
+                   Width="630"
+                   Height="380" 
+                   Background="Transparent" 
+                   BorderBrush="Transparent"
+                   BorderThickness="0" 
+                   SelectedItem="{Binding SelectedTask, Mode=TwoWay}">
             <ListView.ItemTemplate >
                 <DataTemplate>
-                    <Border Background="#eec559" Margin="0,10,0,10" CornerRadius="5" Width="600" Height="60" Padding="0">
-                        <Grid x:Name="TaskApresentation" HorizontalAlignment="Center" VerticalAlignment="Center" Width="600" Height="55" Background="#eec559">
+                    <Border Background="#eec559"
+                            Margin="0,10,0,10" 
+                            CornerRadius="5"
+                            Width="600" 
+                            Height="60" 
+                            Padding="0">
+                        <Grid x:Name="TaskApresentation"
+                              HorizontalAlignment="Center" 
+                              VerticalAlignment="Center"
+                              Width="600" 
+                              Height="55" 
+                              Background="#eec559">
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="25"/>
@@ -45,27 +79,60 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
+                            <Rectangle Fill="#eedec5"
+                                       Grid.Column="0"
+                                       Grid.RowSpan="2"
+                                       Width="25" 
+                                       Height="30" 
+                                       RadiusX="5"
+                                       RadiusY="5" />
 
+                            <CheckBox x:Name="CheckBoxTask"
+                                      Grid.Column="0"
+                                      Grid.RowSpan="2"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center" 
+                                      IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
 
-
-                            <Rectangle Fill="#eedec5" Grid.Column="0" Grid.RowSpan="2" Width="25" Height="30" RadiusX="5" RadiusY="5" />
-
-
-                            <CheckBox x:Name="CheckBoxTask" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
-
-                            <TextBlock Margin="20,0,0,0" x:Name="TaskTitle" Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Center"  Width="Auto" Foreground="Black">
-                                <Run Text="Title: " FontSize="20"/>
-                                <Run Text="{Binding Title, Mode=TwoWay}" FontSize="15"/>
+                            <TextBlock Margin="20,0,0,0"
+                                       x:Name="TaskTitle"
+                                       Grid.RowSpan="2"
+                                       Grid.Column="1" 
+                                       VerticalAlignment="Center"
+                                       Width="Auto"
+                                       Foreground="Black">
+                                <Run Text="Title: " 
+                                     FontSize="20"/>
+                                <Run Text="{Binding Title, Mode=TwoWay}" 
+                                     FontSize="15"/>
                             </TextBlock>
 
-                            <TextBlock Margin="120,0,0,0" x:Name="TaskStartDate" Grid.Row="0" Grid.Column="2" Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Black">
-                                <Run Text="Start Date: " FontSize="15"/>
-                                <Run Text="{Binding StartDate, Mode=TwoWay , StringFormat= dd/MM/yyyy}" FontSize="10"/>
+                            <TextBlock Margin="120,0,0,0" 
+                                       x:Name="TaskStartDate" 
+                                       Grid.Row="0"
+                                       Grid.Column="2"
+                                       Width="Auto"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Foreground="Black">
+                                <Run Text="Start Date: " 
+                                     FontSize="15"/>
+                                <Run Text="{Binding StartDate, Mode=TwoWay , StringFormat= dd/MM/yyyy}" 
+                                     FontSize="10"/>
                             </TextBlock>
 
-                            <TextBlock x:Name="TaskEndDate" Margin="120,0,0,0" Grid.Row="1" Grid.Column="2" Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="Black">
-                                <Run Text="End Date:  " FontSize="15"/>
-                                <Run Text="{Binding EndDate, Mode=TwoWay, StringFormat= dd/MM/yyyy}" FontSize="10"/>
+                            <TextBlock x:Name="TaskEndDate"
+                                       Margin="120,0,0,0" 
+                                       Grid.Row="1"
+                                       Grid.Column="2" 
+                                       Width="Auto"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Foreground="Black">
+                                <Run Text="End Date:  " 
+                                     FontSize="15"/>
+                                <Run Text="{Binding EndDate, Mode=TwoWay, StringFormat= dd/MM/yyyy}"
+                                     FontSize="10"/>
                             </TextBlock>
 
                         </Grid>
@@ -80,12 +147,39 @@
             </ListView.ItemsPanel>
         </ListView>
 
-        <StackPanel x:Name="CeilButtonsStackPanel" Orientation="Horizontal"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,30" Grid.Row="3">
-            <Button Style="{DynamicResource ButtonStyle}" Content="Open List" FontSize="15" Margin="10,0,10,0" Padding="5" Height="65"  Width="150" Foreground="#ffffff" Command="{Binding OpenListCommad}"/>
-            <Button Style="{DynamicResource ButtonStyle}" Content="Refresh" FontSize="15" Margin="10,0,10,0" Padding="5"  Height="65"  Width="150" Foreground="#ffffff" Command="{Binding RefreshCommand}"/>
-            <Button Style="{DynamicResource ButtonStyle}" Content="New Task" FontSize="15" Margin="10,0,10,0" Padding="5"  Height="65"  Width="150" Foreground="#ffffff" Command="{Binding AddNewTaskCommad}"/>
+        <StackPanel x:Name="CeilButtonsStackPanel"
+                    Orientation="Horizontal"  
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,30" 
+                    Grid.Row="3">
+            <Button Style="{DynamicResource ButtonStyle}"
+                    Content="Open List" 
+                    FontSize="15" 
+                    Margin="10,0,10,0" 
+                    Padding="5"
+                    Height="65" 
+                    Width="150"
+                    Foreground="#ffffff"
+                    Command="{Binding OpenListCommad}"/>
+            <Button Style="{DynamicResource ButtonStyle}" 
+                    Content="Refresh"
+                    FontSize="15"
+                    Margin="10,0,10,0" 
+                    Padding="5" 
+                    Height="65" 
+                    Width="150" 
+                    Foreground="#ffffff"
+                    Command="{Binding RefreshCommand}"/>
+            <Button Style="{DynamicResource ButtonStyle}"
+                    Content="New Task" 
+                    FontSize="15" 
+                    Margin="10,0,10,0" 
+                    Padding="5" 
+                    Height="65" 
+                    Width="150" 
+                    Foreground="#ffffff"
+                    Command="{Binding AddNewTaskCommad}"/>
         </StackPanel>
-
-
     </Grid>
 </Window>
