@@ -190,6 +190,9 @@
     <Compile Include="Model\Commands\RelayCommand.cs" />
     <Compile Include="Model\Database\TaskDatabase.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\CustomControls\TaskControl.xaml.cs">
+      <DependentUpon>TaskControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -199,11 +202,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\Services\OpenUWPViews.cs" />
+    <Compile Include="Views\Dictionaries\Resources.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Dictionaries\Styles.xaml">
+    <Page Include="Views\Dictionaries\Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\TaskControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPFToDoList"
+        xmlns:local="clr-namespace:WPFToDoList" xmlns:usercontrols="clr-namespace:WPFToDoList.Views.UserControls"
         mc:Ignorable="d"
         Title="MainWindow"
         Height="900" 
@@ -11,6 +11,26 @@
         Background="Gray"
         Icon="/Views/Img/AppImageIcon.png"
         >
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>
@@ -44,23 +64,31 @@
                    Foreground="{DynamicResource SubTitleTextColor}" 
                    FontFamily="Microsoft Sans Serif" Width="150"/>
 
-        <ListView  Grid.Row="2" 
-                   VerticalAlignment="Center" 
-                   HorizontalAlignment="Center" 
-                   ItemsSource="{Binding TaskList, Mode=TwoWay}"
-                   Width="630"
-                   Height="380" 
-                   Background="Transparent" 
-                   BorderBrush="Transparent"
-                   BorderThickness="0"
-                   ItemTemplate="{DynamicResource TaskDataTemplate}"
-                   SelectedItem="{Binding SelectedTask, Mode=TwoWay}">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
+        <ItemsControl Grid.Row="2" 
+                      ItemsSource="{Binding TaskList}"
+                      VerticalAlignment="Center" 
+                      HorizontalAlignment="Center" 
+                      Width="630"
+                      Height="380"
+                      Background="Transparent" 
+                      BorderBrush="Transparent"
+                      BorderThickness="0">
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <ScrollViewer CanContentScroll="False">
+                        <ItemsPresenter />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <usercontrols:TaskControl Title="{Binding Title, Mode=TwoWay}"
+                                              StartDate="{Binding StartDate, Mode=TwoWay}"
+                                              EndDate="{Binding EndDate , Mode=TwoWay}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
         <StackPanel x:Name="CeilButtonsStackPanel"
                     Orientation="Horizontal"  
