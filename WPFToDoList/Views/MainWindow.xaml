@@ -87,6 +87,7 @@
                     <usercontrols:TaskControl Title="{Binding Title, Mode=TwoWay}"
                                               StartDate="{Binding StartDate, Mode=TwoWay}"
                                               EndDate="{Binding EndDate , Mode=TwoWay}"
+                                              TaskCheck="TaskControl_TaskCheck"
                                               TaskClick="TaskControl_TaskClick"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

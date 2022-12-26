@@ -176,6 +176,7 @@
                           Grid.RowSpan="2"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Center"
+                          Unchecked="CheckBoxTask_Checked"
                           Checked="CheckBoxTask_Checked"
                           Style="{DynamicResource CheckBoxStyle}" />
 

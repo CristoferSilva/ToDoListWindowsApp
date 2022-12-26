@@ -23,6 +23,8 @@ namespace WPFToDoList
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool wasItCheckedEvent = false;
+
         public MainWindow()
         {
             DataContext = new MainWindowViewModel();
@@ -31,8 +33,21 @@ namespace WPFToDoList
 
         private void TaskControl_TaskClick(object sender, RoutedEventArgs e)
         {
-            TaskEntity clickedTask = (TaskEntity)((TaskControl)sender).DataContext;
-            ((MainWindowViewModel)DataContext).TaskClick(clickedTask);
+            if (!wasItCheckedEvent)
+            {
+                TaskEntity clickedTask = (TaskEntity)((TaskControl)sender).DataContext;
+                ((MainWindowViewModel)DataContext).TaskClick(clickedTask);
+            } else
+            {
+                wasItCheckedEvent = !wasItCheckedEvent;
+            }
+        }
+
+        private void TaskControl_TaskCheck(object sender, RoutedEventArgs e)
+        {
+            wasItCheckedEvent = !wasItCheckedEvent;
+
+            //TODO Link a method for this event
         }
     }
 }
