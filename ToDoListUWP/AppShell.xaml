@@ -9,7 +9,7 @@
     
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Views/IMG/BackgroundMain.jpg" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="/Assets/BackgroundMain.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
 
         <Grid.RowDefinitions>

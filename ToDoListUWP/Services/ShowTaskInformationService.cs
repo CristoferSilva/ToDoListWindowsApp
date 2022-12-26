@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace ToDoListUWP.ViewModels.Services
+namespace ToDoListUWP.Services
 {
     public static class ShowTaskInformationService
     {

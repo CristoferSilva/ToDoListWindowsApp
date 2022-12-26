@@ -5,15 +5,16 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using ToDoListWPF.Model.Database;
+using WPFToDoList.Model;
 
-namespace ToDoListWPF
+namespace WPFToDoList
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
+
         public App()
         {
             intializeDatabase();
@@ -23,11 +24,10 @@ namespace ToDoListWPF
 
         private async static void intializeDatabase()
         {
-            using (var db = new TasksDatabase())
+            using (var db = new TaskDatabase())
             {
                 await db.Database.EnsureCreatedAsync();
             }
         }
-
     }
 }

@@ -9,7 +9,7 @@ Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "BridgeUWPWPF", "BridgeUWPWP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Commons", "Commons\Commons.csproj", "{00277A64-7272-4822-ABD7-849B4AA98A03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoListWPF", "WPFToDoList\ToDoListWPF.csproj", "{380E4049-BED1-4448-A035-AFD12ED58BC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoListWPF", "ToDoListWPF\ToDoListWPF.csproj", "{380E4049-BED1-4448-A035-AFD12ED58BC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

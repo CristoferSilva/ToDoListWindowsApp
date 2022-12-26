@@ -5,65 +5,99 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
-using System.Windows.Controls;
-using System.Windows.Input;
-using ToDoListWPF.Commands;
-using ToDoListWPF.ViewModels.Services;
+using System.Threading.Tasks;
+using System.Windows;
+using WPFToDoList.Model.Commands;
+using WPFToDoList.Services;
 
-namespace ToDoListWPF.ViewModels
+namespace WPFToDoList.ViewModels
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
+        private List<TaskEntity> _taskList;
+
+        public List<TaskEntity> TaskList
+        {
+            get { return _taskList; }
+            set { _taskList = value; NotifyPropertyChanged("TaskList"); }
+        }
+
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         private TaskEntity selectedTask;
         public RepositoryService respositoryService;
-        public List<TaskEntity> TasksList { get; set; }
-        public RelayCommand RefreshCommad { get; private set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public RelayCommand RefreshCommand { get; private set; }
         public RelayCommand OpenListCommad { get; private set; }
         public RelayCommand AddNewTaskCommad { get; private set; }
 
         public TaskEntity SelectedTask
         {
             get { return selectedTask; }
-            set 
+            set
             {
                 selectedTask = value;
-                ListView_SelectionChanged();
             }
         }
 
 
         public MainWindowViewModel()
         {
-            TasksList = new List<TaskEntity>();
-            AddNewTaskCommad =  new RelayCommand(AddNewList);
+            TaskList = new List<TaskEntity>();
             respositoryService = new RepositoryService();
-            TasksList = new List<TaskEntity>();
+            RefreshCommand = new RelayCommand(InitializeTaskList);
+            AddNewTaskCommad = new RelayCommand(ShowAddNewTaskView);
+            OpenListCommad = new RelayCommand(ShowPresentationsOfAllTasksView);
             InitializeTaskList();
         }
 
-        public void AddNewList(object parameter)
-        {
-            Process.Start("com.todolistuwp://");
-        }
- 
-        public async void InitializeTaskList()
+        public void InitializeTaskList()
         {
             try
             {
-                TasksList = await respositoryService.GetAllTasksOfTheDay();
+                //TaskList = respositoryService.GetAllTasks().Result;
+                TaskList = respositoryService.GetAllTasksOfTheDay().Result;
+                if (TaskList.Count == 0)
+                {
+                    DefaultTaskList();
+                }
             }
             catch (Exception)
             {
-
-            TasksList = new List<TaskEntity>();
+                DefaultTaskList();
 
             }
         }
 
-        public void ListView_SelectionChanged()
+        private void DefaultTaskList()
         {
+            TaskList = new List<TaskEntity>(){ new TaskEntity()
+                {
+                    Title = "Welcome, There is nothing today!",
+                    IsChecked = false,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now
+                } };
+        }
 
+        public void TaskClick(TaskEntity sender)
+        {
+            OpenUWPViews.ShowAddNewTaskView(sender);
+        }
+        public void ShowAddNewTaskView()
+        {
+            OpenUWPViews.ShowAddNewTaskView();
+        }
+        public void ShowPresentationsOfAllTasksView()
+        {
+            OpenUWPViews.ShowPresentationsOfAllTasksView();
         }
     }
 }

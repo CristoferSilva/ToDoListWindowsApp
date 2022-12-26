@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFToDoList.Views.UserControls
+namespace WPFToDoList.UserControls
 {
     /// <summary>
     /// Interaction logic for TaskControl.xaml

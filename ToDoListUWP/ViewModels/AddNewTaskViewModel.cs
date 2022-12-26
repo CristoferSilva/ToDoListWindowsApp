@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ToDoListUWP.Model;
 using ToDoListUWP.Model.Commands;
-using ToDoListUWP.ViewModels.Services;
+using ToDoListUWP.Services;
 using ToDoListUWP.Views;
 using Windows.ApplicationModel.Core;
 using Windows.UI.ViewManagement;

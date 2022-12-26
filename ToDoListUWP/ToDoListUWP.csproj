@@ -126,8 +126,8 @@
     <Compile Include="Model\Commands\RelayCommand.cs" />
     <Compile Include="ViewModels\AddNewTaskViewModel.cs" />
     <Compile Include="ViewModels\PresentationOfAllTasksViewModel.cs" />
-    <Compile Include="ViewModels\Services\MessagePopUpService.cs" />
-    <Compile Include="ViewModels\Services\ShowTaskInformationService.cs" />
+    <Compile Include="Services\MessagePopUpService.cs" />
+    <Compile Include="Services\ShowTaskInformationService.cs" />
     <Compile Include="Views\AddNewTaskPage.xaml.cs">
       <DependentUpon>AddNewTaskPage.xaml</DependentUpon>
     </Compile>
@@ -199,7 +199,7 @@
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-    <Content Include="Views\IMG\BackgroundMain.jpg" />
+    <Content Include="Assets\BackgroundMain.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -210,7 +210,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Dictionaries\ColorsStyle.xaml">
+    <Page Include="Dictionaries\ColorsStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -243,6 +243,7 @@
       <Name>Commons</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
