@@ -44,7 +44,6 @@ namespace WPFToDoList.ViewModels
             set
             {
                 selectedTask = value;
-                ListView_SelectionChanged();
             }
         }
 
@@ -88,10 +87,9 @@ namespace WPFToDoList.ViewModels
                 } };
         }
 
-        public void ListView_SelectionChanged()
+        public void TaskClick(TaskEntity sender)
         {
-            OpenUWPViews.ShowAddNewTaskView(selectedTask);
-            selectedTask = null;
+            OpenUWPViews.ShowAddNewTaskView(sender);
         }
         public void ShowAddNewTaskView()
         {

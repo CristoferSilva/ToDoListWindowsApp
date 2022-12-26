@@ -154,7 +154,7 @@
                 Height="60"
                 Padding="0"
                 >
-        <Button Style="{DynamicResource ButtonStyle}">
+        <Button Style="{DynamicResource ButtonStyle}" Click="Button_Click" >
             <Grid x:Name="TaskApresentation"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center"

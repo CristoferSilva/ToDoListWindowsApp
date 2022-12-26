@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Commons.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPFToDoList.ViewModels;
+using WPFToDoList.Views.UserControls;
 
 namespace WPFToDoList
 {
@@ -25,6 +27,12 @@ namespace WPFToDoList
         {
             DataContext = new MainWindowViewModel();
             InitializeComponent();
+        }
+
+        private void TaskControl_TaskClick(object sender, RoutedEventArgs e)
+        {
+            TaskEntity clickedTask = (TaskEntity)((TaskControl)sender).DataContext;
+            ((MainWindowViewModel)DataContext).TaskClick(clickedTask);
         }
     }
 }

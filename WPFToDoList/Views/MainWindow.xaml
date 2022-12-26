@@ -8,6 +8,7 @@
         Title="MainWindow"
         Height="900" 
         Width="1560"
+        Name="Root"
         Background="Gray"
         Icon="/Views/Img/AppImageIcon.png"
         >
@@ -85,7 +86,8 @@
                 <DataTemplate>
                     <usercontrols:TaskControl Title="{Binding Title, Mode=TwoWay}"
                                               StartDate="{Binding StartDate, Mode=TwoWay}"
-                                              EndDate="{Binding EndDate , Mode=TwoWay}"/>
+                                              EndDate="{Binding EndDate , Mode=TwoWay}"
+                                              TaskClick="TaskControl_TaskClick"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

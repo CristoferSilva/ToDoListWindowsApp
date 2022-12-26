@@ -31,9 +31,6 @@ namespace WPFToDoList.Views.UserControls
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register("Title", typeof(string), typeof(TaskControl), new PropertyMetadata(string.Empty));
 
-
-
-
         public DateTime StartDate
         {
             get { return (DateTime)GetValue(StartDateProperty); }
@@ -44,8 +41,6 @@ namespace WPFToDoList.Views.UserControls
         public static readonly DependencyProperty StartDateProperty =
             DependencyProperty.Register("StartDate", typeof(DateTime), typeof(TaskControl), new PropertyMetadata(DateTime.Now));
 
-
-
         public DateTime EndDate
         {
             get { return (DateTime)GetValue(EndDateProperty); }
@@ -55,7 +50,6 @@ namespace WPFToDoList.Views.UserControls
         // Using a DependencyProperty as the backing store for EndDate.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EndDateProperty =
             DependencyProperty.Register("EndDate", typeof(DateTime), typeof(TaskControl), new PropertyMetadata(DateTime.Now));
-
 
         public TaskControl()
         {
@@ -73,6 +67,20 @@ namespace WPFToDoList.Views.UserControls
         private void CheckBoxTask_Checked(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(TaskCheckEvent));
+        }
+
+        public event RoutedEventHandler TaskClick
+        {
+            add { AddHandler(TaskClickEvent, value); }
+            remove { RemoveHandler(TaskClickEvent, value); }
+        }
+
+        public static readonly RoutedEvent TaskClickEvent = EventManager.RegisterRoutedEvent(nameof(TaskClick), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TaskControl)); //Chama o evento em outros elementos da DOM
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            RaiseEvent(new RoutedEventArgs(TaskClickEvent));
         }
     }
 }
