@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WPFToDoList.Services
+namespace ToDoListWPF.Services
 {
     public static class OpenUWPViews
     {

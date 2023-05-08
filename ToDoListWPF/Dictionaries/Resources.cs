@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace WPFToDoList.Views.Dictionaries
+namespace ToDoListWPF.Views.Dictionaries
 {
     public class Resources : ResourceDictionary
     {

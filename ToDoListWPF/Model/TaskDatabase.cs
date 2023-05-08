@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace WPFToDoList.Model
+namespace ToDoListWPF.Model
 {
     public class TaskDatabase : ToDoListDB
     {

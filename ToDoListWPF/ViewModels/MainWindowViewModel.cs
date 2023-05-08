@@ -9,10 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using WPFToDoList.Model.Commands;
-using WPFToDoList.Services;
+using ToDoListWPF.Model.Commands;
+using ToDoListWPF.Services;
 
-namespace WPFToDoList.ViewModels
+namespace ToDoListWPF.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
