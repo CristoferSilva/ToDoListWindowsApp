@@ -55,8 +55,9 @@
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <PackageCertificateThumbprint>B425894E2F4B9244F27AF2ED948F1D4EE564366E</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>6827617EDD9767B8B5B7ABD354EE575D724AB23F</PackageCertificateThumbprint>
     <EntryPointProjectUniqueName>..\ToDoListWPF\ToDoListWPF.csproj</EntryPointProjectUniqueName>
+    <PackageCertificateKeyFile>BridgeUWPWPF_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

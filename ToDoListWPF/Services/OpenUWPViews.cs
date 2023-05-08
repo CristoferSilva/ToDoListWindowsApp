@@ -15,21 +15,21 @@ namespace WPFToDoList.Services
         public static void ShowAddNewTaskView(TaskEntity taskEntity)
         {
 
-            Process.Start($"com.todolistuwp://Params?Page={EnumVIewNames.AddNewTaskPage}&Id={taskEntity.Id}");
+            Process.Start($"com.todolistuwp://Params?Page={EnumViewNames.AddNewTaskPage}&Id={taskEntity.Id}");
 
 
         }
 
         public static void ShowAddNewTaskView()
         {
-            Process.Start($"com.todolistuwp://Params?Page={EnumVIewNames.AddNewTaskPage}");
+            Process.Start($"com.todolistuwp://Params?Page={EnumViewNames.AddNewTaskPage}");
 
 
         }
 
         public static void ShowPresentationsOfAllTasksView()
         {
-            Process.Start($"com.todolistuwp://Params?Page={EnumVIewNames.PresentationOfAllTasksView}");
+            Process.Start($"com.todolistuwp://Params?Page={EnumViewNames.PresentationOfAllTasksView}");
         }
     }
 }

@@ -38,7 +38,7 @@ namespace ToDoListUWP
             if (!string.IsNullOrEmpty(e.Parameter.ToString()))
             {
 
-                if (((Object[])e.Parameter)[0].Equals(EnumVIewNames.AddNewTaskPage))
+                if (((Object[])e.Parameter)[0].Equals(EnumViewNames.AddNewTaskPage))
                 {
                     RootFrame.Navigate(typeof(AddNewTaskPage), new Object[] { ((Object[])e.Parameter)[1], this });
                 }

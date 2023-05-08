@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Commons.Enums
 {
-    public static class EnumVIewNames
+    public static class EnumViewNames
     {
         public readonly static string PresentationOfAllTasksView = "PresentationOfAllTasksView";
         public readonly static string AddNewTaskPage = "AddNewTaskPage";
