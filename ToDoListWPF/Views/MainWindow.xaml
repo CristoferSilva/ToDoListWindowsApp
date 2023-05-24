@@ -75,40 +75,46 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-
-        <StackPanel x:Name="CeilButtonsStackPanel"
+        <Border Height="75" 
+                Width="Auto"     
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Grid.Row="3"
+                Background="#ffffff"
+                Padding="2"
+                Margin="0,0,0,20"
+                CornerRadius="10">
+            <StackPanel x:Name="CeilButtonsStackPanel"
                     Orientation="Horizontal"  
-                    VerticalAlignment="Bottom"
-                    HorizontalAlignment="Center"
-                    Margin="0,0,0,30" 
-                    Grid.Row="3">
-            <Button Style="{DynamicResource ButtonStyle}"
-                    Content="Open List" 
+                   >
+                <Button Style="{DynamicResource ButtonStyle}"
                     FontSize="15" 
-                    Margin="10,0,10,0" 
+                    Margin="10,10,10,10" 
                     Padding="5"
-                    Height="65" 
-                    Width="150"
+                    Height="52" 
+                    Width="65"
                     Foreground="#ffffff"
-                    Command="{Binding OpenListCommad}"/>
-            <Button Style="{DynamicResource ButtonStyle}" 
-                    Content="Refresh"
-                    FontSize="15"
-                    Margin="10,0,10,0" 
-                    Padding="5" 
-                    Height="65" 
-                    Width="150" 
-                    Foreground="#ffffff"
-                    Command="{Binding RefreshCommand}"/>
-            <Button Style="{DynamicResource ButtonStyle}"
-                    Content="New Task" 
+                    Command="{Binding OpenListCommad}">
+                    <Image Source="../Assets/AllTasksIcon.png" Height="52" Width="68"/>
+                </Button>
+                <Button Style="{DynamicResource ButtonStyle}" 
+                    Margin="10,10,10,10" 
+                    Height="52" 
+                    Width="80"
+                    Command="{Binding RefreshCommand}">
+                    <Image Source="/ToDoListWPF;component/Assets/Refresh.png" Width="60" Height="52"/>
+                </Button>
+                <Button Style="{DynamicResource ButtonStyle}"
                     FontSize="15" 
-                    Margin="10,0,10,0" 
+                    Margin="10,10,10,10" 
                     Padding="5" 
-                    Height="65" 
-                    Width="150" 
+                    Height="52" 
+                    Width="65" 
                     Foreground="#ffffff"
-                    Command="{Binding AddNewTaskCommad}"/>
-        </StackPanel>
+                    Command="{Binding AddNewTaskCommad}">
+                    <Image Source="/ToDoListWPF;component/Assets/AddNewTaskIcon.png" Width="55" Height="52"/>
+                </Button>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
