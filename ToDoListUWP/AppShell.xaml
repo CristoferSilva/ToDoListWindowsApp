@@ -5,22 +5,16 @@
     xmlns:local="using:ToDoListUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    RequestedTheme="Dark"
     mc:Ignorable="d">
-    
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Assets/BackgroundMain.jpg" Stretch="UniformToFill"/>
-        </Grid.Background>
 
+    <Grid Background="#1C1C1E">
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="All Tasks" Foreground="{ThemeResource TitleTextColor}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="60"  FontFamily="Microsoft Sans Serif"  Margin="0,80,0,0"/>
-
+        <TextBlock x:Name="appShellTitle" Grid.Row="0" Text="Changeable" FontFamily="Tw Cen MT Condensed Extra Bold" Foreground="#F2F2F7" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" SelectionChanged="TextBlock_SelectionChanged"/>
         <Frame x:Name="RootFrame" Grid.Row="1" x:FieldModifier="public"/>
-
-
     </Grid>
   
 

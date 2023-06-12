@@ -49,5 +49,22 @@ namespace ToDoListWPF
 
             //TODO Link a method for this event
         }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void WindowCloseButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void WindowMinimizeButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
     }
 }

@@ -7,114 +7,182 @@
         xmlns:usercontrols="clr-namespace:ToDoListWPF.UserControls"
         mc:Ignorable="d"
         Title="Todolist"
-        Height="900" 
-        Width="1560"
+        Height="950" 
+        Width="610"
+        MaxHeight="895"
+        MinHeight="895"
+        MaxWidth="690"
+        MinWidth="630"
         ResizeMode="CanResizeWithGrip"
+        WindowStyle="None"
+        Background="Transparent"
+        MouseDown="Window_MouseDown"
+        AllowsTransparency="True"
         Name="Root"
         Icon="/Assets/AppImageIcon.png"
         WindowStartupLocation="CenterScreen" 
         >
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="400"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.Background>
+    <Window.Effect>
+        <DropShadowEffect RenderingBias="Quality" ShadowDepth="2"  BlurRadius="20" Color="#F2F2F7"/>
+    </Window.Effect>
+
+    <Border CornerRadius="10" BorderBrush="#1C1C1E" BorderThickness="2" Padding="6" Background="#1C1C1E" Width="605" Height="865">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="Header" Grid.Row="0">
+                <Border Name="DynamicBorder" CornerRadius="10" Background="Black"  HorizontalAlignment="Right" Padding="2" Width="45">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Background="#C93400" BorderBrush="Transparent" Style="{DynamicResource ButtonHeaderStyle}" Click="WindowCloseButtonClick" Margin="4,0,4,0"/>
+                        <Button Background="#00981B" BorderBrush="Transparent" Style="{DynamicResource ButtonHeaderStyle}" Click="WindowMinimizeButtonClick"  Margin="0,0,4,0"/>
+                    </StackPanel>
+                    <Border.Resources>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Width" From="45" To="50" Duration="0:0:0.1"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Width" From="50" To="45" Duration="0:0:0.1"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Resources>
+                </Border>
+            </Grid>
+            <Grid x:Name="Content"
+                  Grid.Row="1"
+                  Background="#1C1C1E"
+>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--<Grid.Background>
             <ImageBrush ImageSource="/Assets/BackgroundMain.jpg" 
                         Stretch="UniformToFill"/>
-        </Grid.Background>
+        </Grid.Background>-->
 
-        <TextBlock Grid.Row="0" 
+                <TextBlock Grid.Row="0" 
                    Height="90"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Foreground="{DynamicResource TitleTextColor}"
-                   FontFamily="Microsoft Sans Serif">
+                   Foreground="#F2F2F7"
+                   FontFamily="Tw Cen MT Condensed Extra Bold">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="5"/>
+
+                    </TextBlock.Effect>
             <Run Text="To Do List" 
                  FontSize="50"/>
             <Run Text=" for desktop" 
-                 FontSize="10" 
-                 Foreground="{DynamicResource SubTitleTextColor}"/>
-        </TextBlock>
+                 FontSize="10"/>
+                </TextBlock>
 
-        <TextBlock Grid.Row="1"  
+                <TextBlock Grid.Row="1"  
                    Text="Tasks of the day:"
-                   FontSize="20"
+                   FontSize="18"
                    HorizontalAlignment="Center"
-                   Margin="-491,0,0,0"
-                   Foreground="{DynamicResource SubTitleTextColor}" 
-                   FontFamily="Microsoft Sans Serif" Height="50" 
-                   VerticalAlignment="Bottom" />
+                   Margin="-420,0,0,0"
+                   Foreground="#F2F2F7" 
+                   FontFamily="Segoe UI Semibold" Height="50" 
+                   VerticalAlignment="Top" >
+                    <TextBlock.Effect>
+                        <DropShadowEffect Opacity="0.8" BlurRadius="30"/>
+                    </TextBlock.Effect>
+                </TextBlock>
 
-        <ItemsControl Grid.Row="2" 
+                <ItemsControl Grid.Row="2" 
+                      x:Name="ItemsControl"
                       ItemsSource="{Binding TaskList}"
                       VerticalAlignment="Center" 
                       HorizontalAlignment="Center" 
                       Width="630"
-                      Height="380"
+                      MaxHeight="500"
+                      Height="Auto"
                       Background="Transparent" 
                       BorderBrush="Transparent"
                       BorderThickness="0">
-            <ItemsControl.Template>
-                <ControlTemplate>
-                    <ScrollViewer CanContentScroll="False" Template="{DynamicResource ScrollViewerControlTemplate}">
-                        <ItemsPresenter />
-                    </ScrollViewer>
-                </ControlTemplate>
-            </ItemsControl.Template>
+                    <ItemsControl.Effect>
+                        <DropShadowEffect BlurRadius="5"/>
+                    </ItemsControl.Effect>
+                    <ItemsControl.Template>
+                        <ControlTemplate>
+                            <ScrollViewer x:Name="scrollViewer" CanContentScroll="False" Template="{DynamicResource ScrollViewerControlTemplate}">
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
 
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <usercontrols:TaskControl Title="{Binding Title, Mode=TwoWay}"
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <usercontrols:TaskControl Title="{Binding Title, Mode=TwoWay}"
                                               StartDate="{Binding StartDate, Mode=TwoWay}"
                                               EndDate="{Binding EndDate , Mode=TwoWay}"
                                               TaskCheck="TaskControl_TaskCheck"
-                                              TaskClick="TaskControl_TaskClick"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-        <Border Height="75" 
+                                              TaskClick="TaskControl_TaskClick" Margin="6"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Border Height="70" 
                 Width="Auto"     
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Center"
                 Grid.Row="3"
                 Background="#ffffff"
-                Padding="2"
+                Padding="0"
                 Margin="0,0,0,20"
                 CornerRadius="10">
-            <StackPanel x:Name="CeilButtonsStackPanel"
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="48.5"/>
+                    </Border.Effect>
+                    <StackPanel x:Name="CeilButtonsStackPanel"
                     Orientation="Horizontal"  
                    >
-                <Button Style="{DynamicResource ButtonStyle}"
+                        <Button Style="{DynamicResource ButtonStyle}"
                     FontSize="15" 
-                    Margin="10,10,10,10" 
+                    Margin="10,5,10,5" 
                     Padding="5"
                     Height="52" 
                     Width="65"
                     Foreground="#ffffff"
                     Command="{Binding OpenListCommad}">
-                    <Image Source="../Assets/AllTasksIcon.png" Height="52" Width="68"/>
-                </Button>
-                <Button Style="{DynamicResource ButtonStyle}" 
-                    Margin="10,10,10,10" 
+                            <Image Source="../Assets/AllTasksIcon.png" Height="52" Width="68"/>
+                        </Button>
+                        <Button Style="{DynamicResource ButtonStyle}" 
+                    Margin="10,5,10,5" 
                     Height="52" 
                     Width="80"
                     Command="{Binding RefreshCommand}">
-                    <Image Source="/ToDoListWPF;component/Assets/Refresh.png" Width="60" Height="52"/>
-                </Button>
-                <Button Style="{DynamicResource ButtonStyle}"
+                            <Image Source="/ToDoListWPF;component/Assets/Refresh.png" Width="60" Height="52"/>
+                        </Button>
+                        <Button Style="{DynamicResource ButtonStyle}"
                     FontSize="15" 
-                    Margin="10,10,10,10" 
+                    Margin="10,5,10,5" 
                     Padding="5" 
                     Height="52" 
                     Width="65" 
                     Foreground="#ffffff"
                     Command="{Binding AddNewTaskCommad}">
-                    <Image Source="/ToDoListWPF;component/Assets/AddNewTaskIcon.png" Width="55" Height="52"/>
-                </Button>
-            </StackPanel>
-        </Border>
-    </Grid>
+                            <Image Source="/ToDoListWPF;component/Assets/AddNewTaskIcon.png" Width="55" Height="52"/>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
 </Window>

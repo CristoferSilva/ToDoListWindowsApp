@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Commons.Entities
 {
-    public class TaskEntity
+    public abstract class TaskEntity
     {
         public int Id { get; set; }
         public string Title { get; set; }

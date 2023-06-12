@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 using ToDoListUWP.Views;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -34,6 +35,8 @@ namespace ToDoListUWP
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            //ApplicationView.lau = new Size(610,950);
+            //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             if (!string.IsNullOrEmpty(e.Parameter.ToString()))
             {
@@ -41,13 +44,20 @@ namespace ToDoListUWP
                 if (((Object[])e.Parameter)[0].Equals(EnumViewNames.AddNewTaskPage))
                 {
                     RootFrame.Navigate(typeof(AddNewTaskPage), new Object[] { ((Object[])e.Parameter)[1], this });
+                    appShellTitle.Text = "Add new Task";
                 }
                 else 
                 { 
                     RootFrame.Navigate(typeof(PresentationOfAllTasksView), new Object[] { this });
+                    appShellTitle.Text = "Task History";
                 }
 
             }
+
+        }
+
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
 
         }
     }

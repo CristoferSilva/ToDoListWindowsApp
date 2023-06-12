@@ -79,7 +79,6 @@ namespace ToDoListUWP
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
-
             using (var db = new ToDoListDB())
             {
                 await db.Database.EnsureCreatedAsync();
